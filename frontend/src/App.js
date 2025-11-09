@@ -3,6 +3,8 @@ import { procesosService, cargarTodosLosDatos } from "./Services/Api";
 import TablaProcesos from "./components/TablaProcesos";
 import "./App.css";
 
+//comentario de prueba para ver si funciona git
+
 function App() {
   const [procesos, setProcesos] = useState([]);
   const [stats, setStats] = useState({ cpu: 0, memoria: 0, uptime: 0, procesos: 0 });
