@@ -3,6 +3,7 @@ import { procesosService, cargarTodosLosDatos } from "./Services/Api";
 import TablaProcesos from "./components/TablaProcesos";
 import Rendimiento from "./components/Rendimiento";
 import "./App.css";
+import "./components/Rendimiento.css";
 
 function App() {
   const [procesos, setProcesos] = useState([]);
