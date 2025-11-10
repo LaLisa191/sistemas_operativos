@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { procesosService, cargarTodosLosDatos } from "./Services/Api";
 import TablaProcesos from "./components/TablaProcesos";
+import Rendimiento from "./components/Rendimiento";
 import "./App.css";
-
-//comentario de prueba para ver si funciona git
 
 function App() {
   const [procesos, setProcesos] = useState([]);
@@ -12,17 +11,30 @@ function App() {
   const [orden, setOrden] = useState("nombre");
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
+  const [vistaActual, setVistaActual] = useState("procesos");
+  const [primeraCarga, setPrimeraCarga] = useState(true); // Nueva bandera
 
   const cargarDatos = async () => {
     try {
-      setError(null);
       const { stats: nuevasStats, procesos: nuevosProcesos } = await cargarTodosLosDatos();
       setStats(nuevasStats);
       setProcesos(nuevosProcesos);
-      setCargando(false);
+      setError(null); // Limpiar error si la carga fue exitosa
+      
+      if (primeraCarga) {
+        setCargando(false);
+        setPrimeraCarga(false);
+      }
     } catch (err) {
-      setError("Error al cargar los datos");
-      setCargando(false);
+      console.error("Error al cargar datos:", err);
+      
+      // Solo mostrar error en la primera carga
+      if (primeraCarga) {
+        setError("Error al cargar los datos. Verifica que el backend esté corriendo.");
+        setCargando(false);
+        setPrimeraCarga(false);
+      }
+      // En cargas subsecuentes, mantener los datos anteriores
     }
   };
 
@@ -65,9 +77,34 @@ function App() {
     }
   };
 
-  if (cargando) return <h2 style={{ textAlign: "center" }}>Cargando datos...</h2>;
-  if (error) return <h2 style={{ textAlign: "center", color: "red" }}>{error}</h2>;
+  // Solo mostrar "Cargando..." en la primera carga
+  if (cargando && primeraCarga) {
+    return (
+      <div className="loading-container">
+        <h2>Cargando datos...</h2>
+        <p>Asegúrate de que el backend esté corriendo en http://127.0.0.1:8000</p>
+      </div>
+    );
+  }
 
+  // Solo mostrar error en la primera carga
+  if (error && primeraCarga) {
+    return (
+      <div className="error-container">
+        <h2>{error}</h2>
+        <p>Verifica que FastAPI esté corriendo:</p>
+        <code>uvicorn main:app --reload</code>
+        <button onClick={() => window.location.reload()}>Reintentar</button>
+      </div>
+    );
+  }
+
+  // Renderizar vista de rendimiento
+  if (vistaActual === "rendimiento") {
+    return <Rendimiento onVolver={() => setVistaActual("procesos")} procesos={procesos} />;
+  }
+
+  // Vista normal de procesos
   return (
     <div className="App">
       <div className="stats-bar">
@@ -76,9 +113,7 @@ function App() {
         <div className="stat-item">⏱️ Uptime: {formatUptime(stats.uptime)}</div>
         <div className="stat-item">⚙️ Procesos: {stats.procesos}</div>
       </div>
-
       <h1>Administrador de Tareas</h1>
-
       <div className="controls">
         <input
           type="text"
@@ -87,7 +122,6 @@ function App() {
           onChange={(e) => setFiltro(e.target.value)}
           className="input-filter"
         />
-
         <select
           value={orden}
           onChange={(e) => setOrden(e.target.value)}
@@ -98,8 +132,13 @@ function App() {
           <option value="nombre">Ordenar por Nombre</option>
           <option value="pid">Ordenar por PID</option>
         </select>
+        <button
+          onClick={() => setVistaActual("rendimiento")}
+          className="btn-rendimiento"
+        >
+          📊 Rendimiento
+        </button>
       </div>
-
       <TablaProcesos procesos={procesosFiltrados} onMatarProceso={handleMatarProceso} />
     </div>
   );

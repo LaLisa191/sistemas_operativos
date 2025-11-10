@@ -1,0 +1,315 @@
+/* 📊 Contenedor de la tabla de procesos */
+.tabla-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* Controles de la tabla */
+.tabla-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+.btn-toggle-vista {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-toggle-vista:hover {
+  background: linear-gradient(135deg, #5a6678 0%, #3d4758 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* 📋 Tabla de procesos */
+.tabla-procesos {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* 🎯 Encabezados de la tabla */
+.tabla-procesos thead th {
+  border: 1px solid #444;
+  padding: 14px 12px;
+  background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+  color: #00c8ff;
+  text-align: left;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* 📝 Celdas de la tabla */
+.tabla-procesos tbody td {
+  border: 1px solid #333;
+  padding: 12px;
+  background: #1f1f1f;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+/* 🎨 Hover en las filas */
+.tabla-procesos tbody tr {
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-in;
+}
+
+.tabla-procesos tbody tr:hover {
+  background: linear-gradient(90deg, #2a2a2a 0%, #252525 100%);
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 4px 15px rgba(0, 200, 255, 0.1);
+}
+
+.tabla-procesos tbody tr:hover td {
+  color: #fff;
+  border-color: #00c8ff;
+}
+
+/* 🔴 CPU alta - resaltado dinámico */
+.high-cpu {
+  color: #ff4444 !important;
+  font-weight: bold;
+  animation: pulse 2s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.5);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* 🟢 Badges de estado */
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.badge-running {
+  background: linear-gradient(135deg, #2d5016 0%, #1a3a0f 100%);
+  color: #8bc34a;
+  border: 1px solid #8bc34a;
+}
+
+.badge-sleeping {
+  background: linear-gradient(135deg, #1a3a52 0%, #0f2433 100%);
+  color: #64b5f6;
+  border: 1px solid #64b5f6;
+}
+
+.badge-stopped {
+  background: linear-gradient(135deg, #5c2a2a 0%, #3d1a1a 100%);
+  color: #ef5350;
+  border: 1px solid #ef5350;
+}
+
+.badge-idle,
+.badge-zombie {
+  background: linear-gradient(135deg, #4a4a2a 0%, #2a2a1a 100%);
+  color: #ffa726;
+  border: 1px solid #ffa726;
+}
+
+/* 🔘 Botón para matar procesos */
+.btn-kill {
+  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+}
+
+.btn-kill:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.5);
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.btn-kill:active {
+  transform: scale(0.95);
+}
+
+.btn-kill-small {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* 📂 Estilos para procesos agrupados */
+.proceso-agrupado {
+  background: linear-gradient(90deg, #252525 0%, #2a2a2a 100%);
+  font-weight: bold;
+}
+
+.proceso-agrupado:hover {
+  background: linear-gradient(90deg, #2d2d2d 0%, #323232 100%);
+}
+
+.proceso-simple {
+  background: #1f1f1f;
+}
+
+.proceso-simple:hover {
+  background: #252525;
+}
+
+.proceso-nombre {
+  margin-left: 5px;
+}
+
+/* 🏷️ Estilos para categorías */
+.categoria-header {
+  background: linear-gradient(135deg, #1a3a52 0%, #0f2433 100%);
+  cursor: pointer;
+  border-top: 2px solid #00c8ff;
+  border-bottom: 2px solid #00c8ff;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.categoria-header:hover {
+  background: linear-gradient(135deg, #1e4761 0%, #12293d 100%);
+  transform: scale(1.005);
+}
+
+.categoria-header td {
+  padding: 15px 12px !important;
+  color: #00d4ff !important;
+  border: none !important;
+}
+
+.categoria-icon {
+  display: inline-block;
+  margin-right: 10px;
+  color: #00ff88;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.categoria-nombre {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.categoria-stats {
+  margin-left: 15px;
+  color: #aaa;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.expand-icon {
+  display: inline-block;
+  margin-right: 8px;
+  color: #00c8ff;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.instance-count {
+  color: #00ff88;
+  font-size: 12px;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+.multiple-processes-indicator {
+  color: #4299e1;
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 5px;
+  background: rgba(66, 153, 225, 0.1);
+  transition: all 0.3s ease;
+}
+
+.multiple-processes-indicator:hover {
+  background: rgba(66, 153, 225, 0.2);
+}
+
+/* 🌳 Estilos para subprocesos */
+.subproceso {
+  background: #1a1a1a;
+  font-size: 13px;
+}
+
+.subproceso:hover {
+  background: #202020;
+}
+
+.subproceso-indent {
+  padding-left: 30px !important;
+  color: #888;
+  font-style: italic;
+}
+
+/* 🎬 Animación de entrada */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 768px) {
+  .tabla-procesos {
+    font-size: 11px;
+  }
+
+  .tabla-procesos thead th,
+  .tabla-procesos tbody td {
+    padding: 8px 6px;
+  }
+
+  .btn-kill {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+
+  .badge {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+}
