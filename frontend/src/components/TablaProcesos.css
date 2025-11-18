@@ -1,0 +1,366 @@
+/* Contenedor principal */
+.tabla-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+/* Controles de la tabla */
+.tabla-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  padding: 0 10px;
+}
+
+.btn-toggle-vista {
+  background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn-toggle-vista:hover {
+  background: linear-gradient(135deg, #5a6678 0%, #3d4758 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* TABLA BASE  */
+
+.tabla-procesos {
+  border-collapse: collapse;
+  width: 100%;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Encabezados */
+.tabla-procesos thead th {
+  border: 1px solid #444;
+  padding: 14px 12px;
+  background: linear-gradient(135deg, #333 0%, #2a2a2a 100%);
+  color: #00c8ff;
+  text-align: left;
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+}
+
+/* Celdas */
+.tabla-procesos tbody td {
+  border: 1px solid #333;
+  padding: 12px;
+  background: #1f1f1f;
+  color: #e0e0e0;
+  transition: all 0.3s ease;
+}
+
+/* HOVER Y ANIMACIONES */
+
+.tabla-procesos tbody tr {
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-in;
+}
+
+/* Hover solo para vista detallada (sin agrupar) */
+.tabla-procesos tbody tr:not(.proceso-agrupado):not(.proceso-simple):not(.subproceso):not(.categoria-header):hover {
+  background: linear-gradient(90deg, #2a2a2a 0%, #252525 100%);
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: 0 4px 15px rgba(0, 200, 255, 0.1);
+}
+
+.tabla-procesos tbody tr:not(.proceso-agrupado):not(.proceso-simple):not(.subproceso):not(.categoria-header):hover td {
+  color: #fff;
+  border-color: #00c8ff;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* CPU ALTA */
+
+.high-cpu {
+  color: #ff4444 !important;
+  font-weight: bold;
+  animation: pulse 2s ease-in-out infinite;
+  text-shadow: 0 0 8px rgba(255, 68, 68, 0.5);
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+/* BADGES DE ESTADO */
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: bold;
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.badge-running {
+  background: linear-gradient(135deg, #2d5016 0%, #1a3a0f 100%);
+  color: #8bc34a;
+  border: 1px solid #8bc34a;
+}
+
+.badge-sleeping {
+  background: linear-gradient(135deg, #1a3a52 0%, #0f2433 100%);
+  color: #64b5f6;
+  border: 1px solid #64b5f6;
+}
+
+.badge-stopped {
+  background: linear-gradient(135deg, #5c2a2a 0%, #3d1a1a 100%);
+  color: #ef5350;
+  border: 1px solid #ef5350;
+}
+
+.badge-idle,
+.badge-zombie {
+  background: linear-gradient(135deg, #4a4a2a 0%, #2a2a1a 100%);
+  color: #ffa726;
+  border: 1px solid #ffa726;
+}
+
+/* BOTONES DE ACCIÓN */
+
+/* Botón individual */
+.btn-kill {
+  background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(211, 47, 47, 0.3);
+}
+
+.btn-kill:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 15px rgba(211, 47, 47, 0.5);
+  background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+}
+
+.btn-kill:active {
+  transform: scale(0.95);
+}
+
+.btn-kill-small {
+  padding: 4px 8px;
+  font-size: 14px;
+}
+
+/* Botón para matar grupos completos */
+.btn-kill-group {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
+  white-space: nowrap;
+}
+
+.btn-kill-group:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.5);
+  background: linear-gradient(135deg, #ff8787 0%, #ff6b6b 100%);
+}
+
+.btn-kill-group:active {
+  transform: translateY(0);
+}
+
+/* CATEGORÍAS */
+
+.categoria-header {
+  background: linear-gradient(135deg, #1a3a52 0%, #0f2433 100%);
+  cursor: pointer;
+  border-top: 2px solid #00c8ff;
+  border-bottom: 2px solid #00c8ff;
+  font-size: 14px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.categoria-header:hover {
+  background: linear-gradient(135deg, #1e4761 0%, #12293d 100%);
+  transform: scale(1.005);
+}
+
+.categoria-header td {
+  padding: 15px 12px !important;
+  color: #00d4ff !important;
+  border: none !important;
+}
+
+.categoria-icon {
+  display: inline-block;
+  margin-right: 10px;
+  color: #00ff88;
+  font-size: 14px;
+  transition: transform 0.3s ease;
+}
+
+.categoria-nombre {
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.categoria-stats {
+  margin-left: 15px;
+  color: #aaa;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+/* PROCESOS AGRUPADOS */
+
+.proceso-agrupado {
+  background: linear-gradient(90deg, #252525 0%, #2a2a2a 100%);
+  font-weight: bold;
+}
+
+.proceso-agrupado:hover {
+  background: linear-gradient(90deg, #2d2d2d 0%, #323232 100%);
+  cursor: default;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Hover solo en la primera columna (nombre) cuando es clickeable */
+.proceso-agrupado td:first-child {
+  transition: background 0.2s ease;
+}
+
+.proceso-agrupado td:first-child:hover {
+  background: rgba(0, 200, 255, 0.1);
+}
+
+.proceso-simple {
+  background: #1f1f1f;
+}
+
+.proceso-simple:hover {
+  background: #252525;
+  cursor: default;
+  transform: none;
+}
+
+.proceso-nombre {
+  margin-left: 5px;
+}
+
+.expand-icon {
+  display: inline-block;
+  margin-right: 8px;
+  color: #00c8ff;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.instance-count {
+  color: #00ff88;
+  font-size: 12px;
+  margin-left: 5px;
+  font-weight: normal;
+}
+
+/* SUBPROCESOS */
+
+.subproceso {
+  background: #1a1a1a;
+  font-size: 13px;
+}
+
+.subproceso:hover {
+  background: #202020;
+  cursor: default;
+  transform: none;
+}
+
+.subproceso-indent {
+  padding-left: 30px !important;
+  color: #888;
+  font-style: italic;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 768px) {
+  .tabla-procesos {
+    font-size: 11px;
+  }
+
+  .tabla-procesos thead th,
+  .tabla-procesos tbody td {
+    padding: 8px 6px;
+  }
+
+  .btn-kill,
+  .btn-kill-group {
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+
+  .btn-kill-group {
+    font-size: 11px;
+  }
+
+  .badge {
+    font-size: 9px;
+    padding: 3px 8px;
+  }
+
+  .categoria-nombre {
+    font-size: 14px;
+  }
+
+  .categoria-stats {
+    display: block;
+    margin-left: 0;
+    margin-top: 5px;
+  }
+}

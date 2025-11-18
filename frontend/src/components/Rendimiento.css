@@ -1,0 +1,32 @@
+
+/* Estilos para el botón de Rendimiento */
+.btn-rendimiento {
+  padding: 10px 20px;
+  background-color: #4299e1;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 10px;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.btn-rendimiento:hover {
+  background-color: #3182ce;
+  transform: translateY(-1px);
+}
+
+.btn-rendimiento:active {
+  transform: translateY(0);
+}
+
+/* Responsive para el botón */
+@media (max-width: 768px) {
+  .btn-rendimiento {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
