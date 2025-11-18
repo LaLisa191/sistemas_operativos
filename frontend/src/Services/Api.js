@@ -20,7 +20,7 @@ API.interceptors.response.use(
   }
 );
 
-// 📊 Servicios para Stats
+// Servicios para Stats
 export const statsService = {
   // Obtener estadísticas del sistema
   obtenerStats: async () => {
@@ -34,7 +34,7 @@ export const statsService = {
   },
 };
 
-// ⚙️ Servicios para Procesos
+// Servicios para Procesos
 export const procesosService = {
   // Obtener todos los procesos
   obtenerProcesos: async () => {
@@ -70,7 +70,7 @@ export const procesosService = {
   },
 };
 
-// 🔄 Servicio combinado para cargar todos los datos a la vez
+// Servicio combinado para cargar todos los datos a la vez
 export const cargarTodosLosDatos = async () => {
   try {
     const [stats, procesos] = await Promise.all([

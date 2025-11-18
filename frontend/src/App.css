@@ -1,4 +1,4 @@
-/* 🎨 Reset y configuración global */
+/* Reset y configuración global */
 * {
   margin: 0;
   padding: 0;
@@ -13,7 +13,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* 🎨 Contenedor principal de la App */
+/* Contenedor principal de la App */
 .App {
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   color: #fff;
@@ -21,7 +21,7 @@ body {
   padding: 20px;
 }
 
-/* 🟩 Barra superior de estadísticas */
+/* Barra superior de estadísticas */
 .stats-bar {
   display: flex;
   justify-content: space-around;
@@ -49,7 +49,7 @@ body {
   box-shadow: 0 4px 12px rgba(0, 200, 255, 0.2);
 }
 
-/* 📝 Título principal */
+/* Título principal */
 h1 {
   margin: 30px 0 20px;
   font-size: 32px;
@@ -62,7 +62,7 @@ h1 {
   font-weight: 700;
 }
 
-/* 🔧 Controles de filtro y ordenamiento */
+/* Controles de filtro y ordenamiento */
 .controls {
   display: flex;
   justify-content: center;
@@ -101,7 +101,7 @@ h1 {
   border-color: #00ff88;
 }
 
-/* 📊 Tabla de procesos */
+/* Tabla de procesos */
 table {
   border-collapse: collapse;
   width: 100%;
@@ -136,7 +136,7 @@ tbody td {
   transition: all 0.3s ease;
 }
 
-/* 🎯 Hover en las filas */
+/* Hover en las filas */
 tbody tr {
   transition: all 0.3s ease;
   animation: fadeIn 0.5s ease-in;
@@ -154,7 +154,7 @@ tbody tr:hover td {
   border-color: #00c8ff;
 }
 
-/* 🔴 CPU alta - resaltado dinámico */
+/* CPU alta - resaltado dinámico */
 .high-cpu {
   color: #ff4444 !important;
   font-weight: bold;
@@ -173,7 +173,7 @@ tbody tr:hover td {
   }
 }
 
-/* 🟢 Badges de estado */
+/* Badges de estado */
 .badge {
   padding: 4px 10px;
   border-radius: 12px;
@@ -210,7 +210,7 @@ tbody tr:hover td {
   border: 1px solid #ffa726;
 }
 
-/* 🔘 Botón para matar procesos */
+/* Botón para matar procesos */
 .btn-kill {
   background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
   border: none;
@@ -233,7 +233,7 @@ tbody tr:hover td {
   transform: scale(0.95);
 }
 
-/* ⏳ Estado de carga y errores */
+/* Estado de carga y errores */
 .loading-container,
 .error-container {
   display: flex;
@@ -273,7 +273,7 @@ tbody tr:hover td {
   box-shadow: 0 6px 20px rgba(0, 200, 255, 0.5);
 }
 
-/* 📱 Responsive Design */
+/* Responsive Design */
 @media (max-width: 768px) {
   .App {
     padding: 10px;
@@ -321,7 +321,7 @@ tbody tr:hover td {
   }
 }
 
-/* 🎬 Animaciones */
+/* Animaciones */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -333,7 +333,7 @@ tbody tr:hover td {
   }
 }
 
-/* 🌊 Animación de fondo sutil */
+/* Animación de fondo sutil */
 @keyframes gradientShift {
   0% {
     background-position: 0% 50%;
@@ -352,7 +352,7 @@ tbody tr:hover td {
   animation: gradientShift 15s ease infinite;
 }
 
-/* 🎨 Scrollbar personalizado */
+/* Scrollbar personalizado */
 ::-webkit-scrollbar {
   width: 10px;
 }
