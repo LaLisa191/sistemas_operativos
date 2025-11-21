@@ -1,6 +1,6 @@
 Administrador de Tareas - Sistema Operativo
 
-Sistema de monitoreo y gestión de procesos en tiempo real con interfaz web moderna, desarrollado con React y FastAPI.
+Sistema de monitoreo y gestión de procesos del sistema operativo en tiempo real, desarrollado con una arquitectura cliente-servidor, React y FastAPI, que permite visualizar, filtrar, ordenar y eliminar procesos del sistema.
 
 Características:
 
@@ -50,63 +50,27 @@ Sistema Operativo:
 - Linux (soportado)
 - macOS (soportado con limitaciones)
 
-Instalación:
-1. Clonar el repositorio
-git clone https://github.com/LaLisa191/sistemas_operativos.git
-cd sistemas_operativos
+Instalacion:
+1. descargar el repositorio de GIT HUB https://github.com/LaLisa191/sistemas_operativos
+2. descomprimir el archivo comprimido
+3. Abrir la carpeta principal con Visual Studio Code
+4. para arrancar el frontend, es necesario abrir una terminal en powershell y poner CD FRONTED
+5. luego usa NPM INSTALL
+6. para arrancar el Front se usa NPM START
+7. instalar Python https://www.python.org/downloads/windows/
+8. luego instalar pip  py -m pip install unicorn
+9. Abrir Configuración
 
-Configurar el Backend
-cd backend
+- Buscar "Variables de entorno"
+- Editar PATH del usuario
 
-# Crear entorno virtual (opcional pero recomendado)
-python -m venv venv
+Agregar:
 
-# Activar entorno virtual
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
+C:\Users\SERGIO LUIS\AppData\Local\Programs\Python\Python313\
+C:\Users\SERGIO LUIS\AppData\Local\Programs\Python\Python313\Scripts\
 
-# Instalar dependencias
-pip install -r requirements.txt
+10. py -m pip install fastapi unicorn (para instalar Unicorn)
 
-# O instalar manualmente:
-pip install fastapi uvicorn psutil
-
-cd backend
-
-# Crear entorno virtual (opcional pero recomendado)
-python -m venv venv
-
-# Activar entorno virtual
-# Windows:
-venv\Scripts\activate
-# Linux/Mac:
-source venv/bin/activate
-
-# Instalar dependencias
-pip install -r requirements.txt
-
-# O instalar manualmente:
-pip install fastapi uvicorn psutil
-
-cd ../frontend
-
-# Instalar dependencias
-npm install
-
-cd backend
-
-# Windows (como Administrador para poder matar procesos):
-uvicorn main:app --reload
-
-# Linux/Mac (con sudo):
-sudo uvicorn main:app --reload
-
-l backend estará disponible en: http://127.0.0.1:8000
-Iniciar el Frontend
-Abre otra terminal y ejecuta:
-
-cd frontend
-npm start
-
+11. instalar librería PsultilÑ
+- python -m pip install psutil
+13. python -m uvicorn main:app --reload para arrancar el backend
